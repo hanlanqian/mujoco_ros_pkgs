@@ -65,9 +65,9 @@ bool get_egl_device(EGLDeviceEXT *egl_devices, int &choose_device)
 	choose_device = 0;
 	for (int i = 0; i < num_devices; i++) {
 		extensions = eglQueryDeviceStringEXT(egl_devices[i], EGL_EXTENSIONS);
-		ROS_DEBUG_STREAM("Device " << i << " has extensions: " << extensions);
+		ROS_WARN_STREAM("Device " << i << " has extensions: " << extensions);
 		if (strstr(extensions, "EGL_NV_device_cuda")) {
-			ROS_DEBUG_STREAM("Choosing device " << i << " for CUDA support");
+			ROS_WARN_STREAM("Choosing device " << i << " for CUDA support");
 			choose_device = i;
 			break;
 		}
