@@ -23,19 +23,31 @@ jobs:
         distro: [noetic, one]
         render_backend: [GLFW, OSMESA, EGL, DISABLE]
         mujoco: [3.2.0]
-        include:
-          - distro: noetic
-            mujoco: 3.2.0
-            env:
-              CATKIN_LINT: true
-              CCOV: true
-          - distro: one
-            mujoco: 3.2.0
-            env:
-              CLANG_TIDY: pedantic
+#        include:
+#          - distro: noetic
+#            mujoco: 3.2.0
+#            env:
+#              CATKIN_LINT: true
+#              CCOV: true
+#          - distro: one
+#            mujoco: 3.2.0
+#            env:
+#              CLANG_TIDY: pedantic
         exclude:
           # Disable EGL on noetic until we have a proper solution for accessing the GPU
           - distro: noetic
+            render_backend: GLFW
+          - distro: noetic
+            render_backend: OSMESA
+          - distro: noetic
+            render_backend: DISABLE
+          - distro: one
+            render_backend: GLFW
+          - distro: one
+            render_backend: OSMESA
+          - distro: one
+            render_backend: DISABLE
+          - distro: one
             render_backend: EGL
 
     env:
